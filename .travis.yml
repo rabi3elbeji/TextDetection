@@ -7,4 +7,4 @@ before_install:
 - docker search opencv
 
 script:
-- docker search leptonica 
+- docker search debian
