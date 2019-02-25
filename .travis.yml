@@ -1,11 +1,12 @@
+os: linux
 language: cpp
 
 services:
   - docker
 
 before_install:
-- cd .docker/debian
-- docker build -t debian:ai .
+- docker build -t text-detection:ai .
 
 script:
-- docker run -i --rm -v $PWD:/tmp -w /tmp debian:ai bash -c "ls -al"
+- docker run -i --rm -v $PWD:/tmp -w /tmp text-detection:ai bash -c "ls -al"
+- cmake --help
