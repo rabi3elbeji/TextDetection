@@ -4,7 +4,8 @@ services:
   - docker
 
 before_install:
-- docker search opencv
+- cd .docker/debian
+- docker build -t debian:ai .
 
 script:
-- docker search debian
+- docker run -i --rm -v $PWD:/tmp -w /tmp debian:ai bash -c "ls -al"
