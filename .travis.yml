@@ -5,6 +5,34 @@ compiler:
   - gcc
 
 before_script:
+  - apt-get update -y && \
+    apt-get install -y \
+    --no-install-recommends apt-utils \
+    build-essential \
+    automake \
+    bison \
+    curl \
+    coreutils \
+    file \
+    gettext \
+    make \
+    openssl \
+    libssl-dev \
+    libgcrypt11-dev \
+    libcurl4-openssl-dev \
+    zlib1g \
+    zlib1g-dev \
+    expat \
+    libexpat1-dev \
+    patch \
+    perl \
+    unzip \
+    wget \
+    yasm \
+    lftp \
+    zip \
+    dos2unix \
+    ghostscript
   #
   # Install opencv and opencv_contrib
   #
