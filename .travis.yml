@@ -8,7 +8,7 @@ before_script:
   #
   # Install opencv and opencv_contrib
   #
-  RUN cd /tmp && \
+  cd /tmp && \
     mkdir opencv_installer && \
     cd opencv_installer && \
     git clone https://github.com/opencv/opencv.git && \
