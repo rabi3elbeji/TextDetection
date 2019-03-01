@@ -1,8 +1,7 @@
 FROM centos:7
 MAINTAINER OpenBee AI TEAM
-
   #
-  # Install basic tools
+  # Install basic tools & libs
   #
 RUN yum update -y && \
   yum install -y \
@@ -53,7 +52,7 @@ RUN git config --global url."https://".insteadOf git://
   #
   # Install CMake
   #
-CMAKE_VERSION=3.10.2
+ENV CMAKE_VERSION=3.10.2
 RUN  cd /usr/src && \
   CMAKE_VERSION_XY=$(echo ${CMAKE_VERSION} | sed -r 's/\.[0-9]+$//') && \
   wget https://cmake.org/files/v${CMAKE_VERSION_XY}/cmake-${CMAKE_VERSION}-Linux-x86_64.tar.gz && \
@@ -80,7 +79,7 @@ RUN  yum -y clean all && rm -rf /var/cache/yum
   #
 RUN  find /usr/local/lib -name '*.a' -print0 | xargs -0 rm -f 
   #
-  # Install dev tools
+  # Install leptonica
   #
 RUN cd /opt && \
     wget "http://www.leptonica.com/source/leptonica-1.77.0.tar.gz" && \
@@ -90,7 +89,7 @@ RUN cd /opt && \
     make && \
     make install
   # 
-  # Install Catch2
+  # Install catch2
   #
 RUN cd /opt && \
     git clone https://github.com/catchorg/Catch2.git && \
@@ -134,7 +133,6 @@ RUN cd /tmp && \
       -D BUILD_EXAMPLES=ON .. && \
     make -j"$(nproc --all)" && \
     make install
-
   #
   # Install zxing
   #
@@ -152,19 +150,6 @@ RUN cd /tmp && \
     .. && \
     make -j"$(nproc --all)" && \
     make install
-  # 
-  # Install ghostscript
-  #
-RUN yum install ghostscript -y
-  #
-  # Install OpenJDK 8
-  #
-RUN yum install java-1.8.0-openjdk-devel -y
-  #
-  # Install dos2unix
-  #
-RUN yum install dos2unix -y
-
 
 WORKDIR /usr/src
 CMD /bin/bash

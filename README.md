@@ -5,5 +5,8 @@
 An implementation of text detection from images.
 
 
-## Licence
-MIT
+## License
+
+Licensed under the [MIT License](http://creativecommons.org/licenses/MIT/). 
+
+External libraries are licensed under their respective licenses.
