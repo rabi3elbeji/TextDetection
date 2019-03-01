@@ -9,8 +9,6 @@ before_script:
   # Install opencv and opencv_contrib
   #
   cd /tmp && \
-    mkdir opencv_installer && \
-    cd opencv_installer && \
     git clone https://github.com/opencv/opencv.git && \
     cd opencv && \
     git checkout 3.4.3 && \
