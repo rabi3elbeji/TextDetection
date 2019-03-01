@@ -2,8 +2,30 @@ os: linux
 language: cpp
 
 compiler:
-  - clang
   - gcc
+
+before_script:
+  #
+  # Install opencv and opencv_contrib
+  #
+  RUN cd /tmp && \
+    mkdir opencv_installer && \
+    cd opencv_installer && \
+    git clone https://github.com/opencv/opencv.git && \
+    cd opencv && \
+    git checkout 3.4.3 && \
+    cd .. && \
+    git clone https://github.com/opencv/opencv_contrib.git && \
+    cd opencv_contrib && \
+    git checkout 3.4.3 && \
+    cd ../opencv && \
+    mkdir build && cd build && \
+    cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D BUILD_SHARED_LIBS=ON \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules .. && \
+    make -j"$(nproc --all)" && \
+    make install
 
 script:
 - mkdir build
